@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>Casey's Corner</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/content.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<!-- Top Navigation -->
+			<header class="codrops-header">
+				<h1>Casey's Corner</h1>
+				<p>A happy place where I talk about cool things you might enjoy.</p>
+				<nav class="codrops-demos">
+					<span class="square individual">
+					<a class="ninth before after" href="index.html">Home</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="music.html">Music</a>
+					</span>
+					<span class="square individual">
+					<a class="currentPage ninth before after" href="games.html">Games</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="podcasts.html">Podcasts</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="books.html">Books</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="youtube.html">YouTube</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="movies.html">Movies</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="tvShows.html">TV Shows</a>
+					</span>
+				</nav>
+			</header>
+			<section>
+				<p>This is the page for video game reviews. Games will vary in genre (as I have a wide spectrum of games I enjoy), from role-playing, to action-adventure, to sports. Reviews consist of a simple overview of what the game is, why I like it, and then a few screen shots of the game.</p>
+			</section>
+			<div class="or-spacer">
+				<div class="mask"></div>
+				<div class="heading">Hotline Miami</div>
+				<section>
+					<p>Hotline Miami is a 2D action video game developed by Dennaton Games. Set in 1989 Miami, the plot consists of two protagonists, Jacket and Biker, who have been receiving phone calls instructing them to commit massacres against the local Russian Mafia. The game blends top down perspective with stealth, extreme violence and surreal storytelling, along with a soundtrack and visuals influenced by 1980s culture.</p>
+					<p>I love this game for several reasons. One, for me, I love fast-paced games, and this game has about as fast-paced of combat that you'll see in a game. Also, the story has a lot of interesting turns that keep you hooked throughout the whole game and the music is spectacular. It's catchy and fits right in with the mood of the game.</p>
+					<p><img src="img/hotlineMiami1.jpg" alt="Screenshot 1" style="width:700px;height:393px;"></p>
+					<p><img src="img/hotlineMiami2.jpg" alt="Screenshot 1" style="width:700px;height:393px;"></p>
+					<p><img src="img/hotlineMiami3.jpg" alt="Screenshot 1" style="width:700px;height:393px;"></p>
+				</section>
+			</div>
+		</div><!-- /container -->
+		<script src="js/classie.js"></script>
+		<script src="js/uiMorphingButton_fixed.js"></script>
+		<script>
+			(function() {	
+				var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+				// trick to prevent scrolling when opening/closing button
+				function noScrollFn() {
+					window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+				}
+
+				function noScroll() {
+					window.removeEventListener( 'scroll', scrollHandler );
+					window.addEventListener( 'scroll', noScrollFn );
+				}
+
+				function scrollFn() {
+					window.addEventListener( 'scroll', scrollHandler );
+				}
+
+				function canScroll() {
+					window.removeEventListener( 'scroll', noScrollFn );
+					scrollFn();
+				}
+
+				function scrollHandler() {
+					if( !didScroll ) {
+						didScroll = true;
+						setTimeout( function() { scrollPage(); }, 60 );
+					}
+				};
+
+				function scrollPage() {
+					scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+					didScroll = false;
+				};
+
+				scrollFn();
+				
+				var el = document.querySelector( '.morph-button' );
+				
+				new UIMorphingButton( el, {
+					closeEl : '.icon-close',
+					onBeforeOpen : function() {
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterOpen : function() {
+						// can scroll again
+						canScroll();
+						// add class "noscroll" to body
+						classie.addClass( document.body, 'noscroll' );
+						// add scroll class to main el
+						classie.addClass( el, 'scroll' );
+					},
+					onBeforeClose : function() {
+						// remove class "noscroll" to body
+						classie.removeClass( document.body, 'noscroll' );
+						// remove scroll class from main el
+						classie.removeClass( el, 'scroll' );
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterClose : function() {
+						// can scroll again
+						canScroll();
+					}
+				} );
+			})();
+		</script>
+	</body>
+</html>

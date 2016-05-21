@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>Casey's Corner</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/content.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<!-- Top Navigation -->
+			<header class="codrops-header">
+				<h1>Casey's Corner</h1>
+				<p>A happy place where I talk about cool things you might enjoy.</p>
+				<nav class="codrops-demos">
+					<span class="square individual">
+					<a class="currentPage ninth before after" href="index.html">Home</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="music.html">Music</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="games.html">Games</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="podcasts.html">Podcasts</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="books.html">Books</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="youtube.html">YouTube</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="movies.html">Movies</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="tvShows.html">TV Shows</a>
+					</span>
+				</nav>
+			</header>
+			<section>
+				<p>I had a simple goal when I created this website: to make positive reviews about different things I like and release them to the world. What do I mean by "things"? This website has reviews for my favorite music, games, podcasts, books, YouTube channels, movies, and television shows. Some you may have heard of, and some maybe not. You may also notice that I purposefully make every review about things I like, meaning they are all positive. The Internet already has enough negativity, let's try to make this a little happy corner of the Internet. Hopefully you learn about some cool stuff going through the reviews, and for each category a new review will go up every month. Click the links near the top of the page to start checking them out, enjoy!</p>
+				<div class="morph-button morph-button-overlay morph-button-fixed">
+					<button type="button">Learn More About Me</button>
+					<div class="morph-content">
+						<div>
+							<div class="content-style-overlay">
+								<span class="icon icon-close">Close the overlay</span>
+								<h2>About Me</h2>
+								<p>If you weren't able to figure it out already, my name is Casey. I'm from McMinnville, Oregon, which is about 40 miles southeast of Portland, Oregon. If you have watched the show Portlandia, no, Portlandia isn't a documentary of people in Portland. Although you'd be surprised how accurate some of the scenes are.</p>
+								<p>I'm graduating with a Bachelor's degree in Software Engineering from Oregon Institute of Technology this June, and I'm so very excited to be done with school. I'll be moving to Portland (Tigard exactly) to pursue a job as a software developer, QA Engineer, or front-end developer, depending on the company and the work they do. If you're interested, I have a link to my online portfolio on this website. Just select the link at the bottom of the home page to check it out.</p>
+								<p>As far as what I enjoy to do, I love learning. Whether it's about nerdy software, engineering stuff, how cars work, or how human's think. You might notice some of the things I do reviews on will cover these topics. However, I also love fiction and fantasy, most noted by my infatuation with Game of Thrones (Have you seen the latest episode? Ahhhh). Being a software engineering student, I naturally enjoy playing video games, although I'm not the "play until 3 in the morning" sort of player. I guess the last one I'll mention is I love sports (playing and watching), especially basketball, football, tennis, and disk golf.</p>
+								<p>That about sums it up for me, if you have any questions or comments about the site, feel free to email me at caseycorner2016@gmail.com. Now check out some rad reviews dude!
+							</div>
+						</div>
+					</div>
+				</div><!-- morph-button -->
+			</section>
+			<section class="related">
+				<p>Check out my work and project portfolio here:</p>
+				<a href="http://caseyschurman.github.io/">
+					<img src="img/portfolio.png" />
+					<h3>Online Portfolio</h3>
+				</a>
+			</section>
+		</div><!-- /container -->
+		<script src="js/classie.js"></script>
+		<script src="js/uiMorphingButton_fixed.js"></script>
+		<script>
+			(function() {	
+				var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+				// trick to prevent scrolling when opening/closing button
+				function noScrollFn() {
+					window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+				}
+
+				function noScroll() {
+					window.removeEventListener( 'scroll', scrollHandler );
+					window.addEventListener( 'scroll', noScrollFn );
+				}
+
+				function scrollFn() {
+					window.addEventListener( 'scroll', scrollHandler );
+				}
+
+				function canScroll() {
+					window.removeEventListener( 'scroll', noScrollFn );
+					scrollFn();
+				}
+
+				function scrollHandler() {
+					if( !didScroll ) {
+						didScroll = true;
+						setTimeout( function() { scrollPage(); }, 60 );
+					}
+				};
+
+				function scrollPage() {
+					scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+					didScroll = false;
+				};
+
+				scrollFn();
+				
+				var el = document.querySelector( '.morph-button' );
+				
+				new UIMorphingButton( el, {
+					closeEl : '.icon-close',
+					onBeforeOpen : function() {
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterOpen : function() {
+						// can scroll again
+						canScroll();
+						// add class "noscroll" to body
+						classie.addClass( document.body, 'noscroll' );
+						// add scroll class to main el
+						classie.addClass( el, 'scroll' );
+					},
+					onBeforeClose : function() {
+						// remove class "noscroll" to body
+						classie.removeClass( document.body, 'noscroll' );
+						// remove scroll class from main el
+						classie.removeClass( el, 'scroll' );
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterClose : function() {
+						// can scroll again
+						canScroll();
+					}
+				} );
+			})();
+		</script>
+	</body>
+</html>

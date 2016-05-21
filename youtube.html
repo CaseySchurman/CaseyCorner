@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>Casey's Corner</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/content.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<!-- Top Navigation -->
+			<header class="codrops-header">
+				<h1>Casey's Corner</h1>
+				<p>A happy place where I talk about cool things you might enjoy.</p>
+				<nav class="codrops-demos">
+					<span class="square individual">
+					<a class="ninth before after" href="index.html">Home</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="music.html">Music</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="games.html">Games</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="podcasts.html">Podcasts</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="books.html">Books</a>
+					</span>
+					<span class="square individual">
+					<a class="currentPage ninth before after" href="youtube.html">YouTube</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="movies.html">Movies</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="tvShows.html">TV Shows</a>
+					</span>
+				</nav>
+			</header>
+			<section>
+				<p>This is the page for reviews on YouTube channels. Reviews have an overview what the person does on the channel and why I enjoy it. They also contain a video from YouTube, so you can get a feel for the channel and what it's about.</p>
+			</section>
+			<div class="or-spacer">
+				<div class="mask"></div>
+				<div class="heading">Engineering Explained</div>
+				<section>
+					<p>The Engineering Explained channel's main purpose is to teach people how cars work. And not in a general sense, the channel goes into detail about not only what's going on, but why it's going on, which is really cool. Because then you can actually understand what's happening and why it was made the way it was. Also, the channel explains do's and dont's in certain vehicles, in different situations, etc. Even more impressive is that all the videos are made by one guy, Jason Fenske.</p>
+					<p>I love this channel because I enjoy learning about cars and how they work, and this channel does by far the best job of explaining concepts so they're easy to understand. So, if you're a car lover, or even just curious about how they work, this channel is the one to go to. It's also a good way of stepping into the world of physics, as Jason does explain some concepts with simple physics and math. See the below video where Jason explains Nitrous.</p>
+					<p><iframe width="560" height="315" src="https://www.youtube.com/embed/vqQghwDtqTQ" frameborder="5" allowfullscreen></iframe> </p>
+				</section>
+			</div>
+		</div><!-- /container -->
+		<script src="js/classie.js"></script>
+		<script src="js/uiMorphingButton_fixed.js"></script>
+		<script>
+			(function() {	
+				var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+				// trick to prevent scrolling when opening/closing button
+				function noScrollFn() {
+					window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+				}
+
+				function noScroll() {
+					window.removeEventListener( 'scroll', scrollHandler );
+					window.addEventListener( 'scroll', noScrollFn );
+				}
+
+				function scrollFn() {
+					window.addEventListener( 'scroll', scrollHandler );
+				}
+
+				function canScroll() {
+					window.removeEventListener( 'scroll', noScrollFn );
+					scrollFn();
+				}
+
+				function scrollHandler() {
+					if( !didScroll ) {
+						didScroll = true;
+						setTimeout( function() { scrollPage(); }, 60 );
+					}
+				};
+
+				function scrollPage() {
+					scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+					didScroll = false;
+				};
+
+				scrollFn();
+				
+				var el = document.querySelector( '.morph-button' );
+				
+				new UIMorphingButton( el, {
+					closeEl : '.icon-close',
+					onBeforeOpen : function() {
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterOpen : function() {
+						// can scroll again
+						canScroll();
+						// add class "noscroll" to body
+						classie.addClass( document.body, 'noscroll' );
+						// add scroll class to main el
+						classie.addClass( el, 'scroll' );
+					},
+					onBeforeClose : function() {
+						// remove class "noscroll" to body
+						classie.removeClass( document.body, 'noscroll' );
+						// remove scroll class from main el
+						classie.removeClass( el, 'scroll' );
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterClose : function() {
+						// can scroll again
+						canScroll();
+					}
+				} );
+			})();
+		</script>
+	</body>
+</html>

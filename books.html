@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>Casey's Corner</title>
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/content.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<!-- Top Navigation -->
+			<header class="codrops-header">
+				<h1>Casey's Corner</h1>
+				<p>A happy place where I talk about cool things you might enjoy.</p>
+				<nav class="codrops-demos">
+					<span class="square individual">
+					<a class="ninth before after" href="index.html">Home</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="music.html">Music</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="games.html">Games</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="podcasts.html">Podcasts</a>
+					</span>
+					<span class="square individual">
+					<a class="currentPage ninth before after" href="books.html">Books</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="youtube.html">YouTube</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="movies.html">Movies</a>
+					</span>
+					<span class="square individual">
+					<a class="ninth before after" href="tvShows.html">TV Shows</a>
+					</span>
+				</nav>
+			</header>
+			<section>
+				<p>This is the page for book reviews. Each review contains a short synopsis of the book and of course why I enjoy the book.</p>
+			</section>
+			<div class="or-spacer">
+				<div class="mask"></div>
+				<div class="heading">Warm Bodies</div>
+				<section>
+					<p>Wait, isn't that a movie? Well, yes, but actually the movie is based off of a book (like so many movies recently it seems like). I will say that while the movie is quite good, the book is even better. The book is about a plague has left the planet's population divided between zombies and humans. An unusual zombie (named R) sees his walking-dead brethren attacking a living woman named Julie, and ends up rescuing her. Julie sees that R is different from the other zombies, and the pair embark on an interesting relationship.</p>
+					<p>I love how unique the book's story is. If I told somebody I was reading a book with zombies in it, they would assume it would be some post-apocalypse survival book. Which this book does have elements of that, and is a key part of the story. But, at the heart of it, this book is just another Romeo and Juliet romance story (the stories are actually very similar when you start examining them). Along with Isaac Marion's (the author) elegant writing, somehow able to smoothly combine dark and funny, love and pain, all sorts of emotions, it's incredible.</p>
+				</section>
+			</div>
+		</div><!-- /container -->
+		<script src="js/classie.js"></script>
+		<script src="js/uiMorphingButton_fixed.js"></script>
+		<script>
+			(function() {	
+				var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+				// trick to prevent scrolling when opening/closing button
+				function noScrollFn() {
+					window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+				}
+
+				function noScroll() {
+					window.removeEventListener( 'scroll', scrollHandler );
+					window.addEventListener( 'scroll', noScrollFn );
+				}
+
+				function scrollFn() {
+					window.addEventListener( 'scroll', scrollHandler );
+				}
+
+				function canScroll() {
+					window.removeEventListener( 'scroll', noScrollFn );
+					scrollFn();
+				}
+
+				function scrollHandler() {
+					if( !didScroll ) {
+						didScroll = true;
+						setTimeout( function() { scrollPage(); }, 60 );
+					}
+				};
+
+				function scrollPage() {
+					scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+					didScroll = false;
+				};
+
+				scrollFn();
+				
+				var el = document.querySelector( '.morph-button' );
+				
+				new UIMorphingButton( el, {
+					closeEl : '.icon-close',
+					onBeforeOpen : function() {
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterOpen : function() {
+						// can scroll again
+						canScroll();
+						// add class "noscroll" to body
+						classie.addClass( document.body, 'noscroll' );
+						// add scroll class to main el
+						classie.addClass( el, 'scroll' );
+					},
+					onBeforeClose : function() {
+						// remove class "noscroll" to body
+						classie.removeClass( document.body, 'noscroll' );
+						// remove scroll class from main el
+						classie.removeClass( el, 'scroll' );
+						// don't allow to scroll
+						noScroll();
+					},
+					onAfterClose : function() {
+						// can scroll again
+						canScroll();
+					}
+				} );
+			})();
+		</script>
+	</body>
+</html>
